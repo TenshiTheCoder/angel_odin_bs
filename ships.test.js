@@ -11,7 +11,7 @@ test(`Ship sunk successfully`, () => {
     newShip.hit()
     newShip.hit()
     newShip.hit()
-    expect(newShip.sunk).toBe(true);
+    expect(newShip.isSunk()).toBe(true);
 })
 
 test("Ship is already sunk, choose a new target", () => {

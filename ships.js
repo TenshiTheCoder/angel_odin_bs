@@ -8,10 +8,16 @@ export class Ship {
     hit(){
         if(this.sunk){
             throw new Error("Ship has already been sunk, choose a new target")
-        } else {
-            this.hits += 1;
-            if(this.hits === this.length) this.sunk = true;
         }
+
+        this.hits += 1;
+        this.isSunk();
+    }
+
+    isSunk(){
+        if(this.hits === this.length){
+            return this.sunk = true; 
+        } else return this.sunk;
     }
 }
 
