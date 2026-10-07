@@ -55,6 +55,8 @@ export class Gameboard {
         for(let coord of shipCoordinates){
             this.board[coord[0]][coord[1]] = ship
         }
+
+        this.ships.push(ship);
     }
 
     recieveAttack(){
