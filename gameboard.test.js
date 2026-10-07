@@ -22,6 +22,15 @@ test("Ship placement exceeds right boundary", () => {
     expect(() => gameboard.placeShip(ship, [4, 9], "horizontal")).toThrow();
 })
 
+test("Ship overlaps with another", () => {
+    let ship = new Ship(3);
+    let shipTwo = new Ship(4);
+    let gameboard = new Gameboard();
+
+    gameboard.placeShip(ship, [2, 4], "horizontal");
+    expect(() => gameboard.placeShip(shipTwo, [2, 4], "horizontal")).toThrow();
+})
+
 // test("Ship placement exceeds left boundary", () => {
 //     let ship = new Ship(3);
 //     let gameboard = new Gameboard();

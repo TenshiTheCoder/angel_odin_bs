@@ -45,6 +45,16 @@ export class Gameboard {
                 throw new Error(`Invalid ship placement at ${coord}`)
             }
         }
+
+        for(let coord of shipCoordinates){
+                if(this.board[coord[0]][coord[1]] !== null){
+                    throw new Error("Ship placement overlaps, choose a new square");
+                }
+            }
+
+        for(let coord of shipCoordinates){
+            this.board[coord[0]][coord[1]] = ship
+        }
     }
 
     recieveAttack(){
