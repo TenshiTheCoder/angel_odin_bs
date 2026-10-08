@@ -21,11 +21,3 @@ export class Ship {
     }
 }
 
-const ships = {
-    carrier: new Ship(5),
-    battleship: new Ship(4),
-    cruiser: new Ship(3),
-    submarine: new Ship(2),
-    destroyer: new Ship(1)
-}
-
