@@ -51,11 +51,57 @@ test("Two ships successfully placed", () => {
     expect(gameboard.ships).toEqual([ship, shipTwo]);
 })
 
+test("Attack received successfully", () => {
+    let ship = new Ship(3);
+    let gameboard = new Gameboard();
 
+    gameboard.placeShip(ship, [2, 4], "horizontal");
+    gameboard.receiveAttack([2, 4]);
 
-// test("Ship placement exceeds left boundary", () => {
-//     let ship = new Ship(3);
-//     let gameboard = new Gameboard();
+    expect(ship.hits).toBe(1);
+})
 
-//     expect(() => gameboard.placeShip(ship, [-1, 4], "horizontal")).toThrow();
-// })
+test("Attack missed", () => {
+    let ship = new Ship(3);
+    let gameboard = new Gameboard();
+
+    gameboard.placeShip(ship, [2, 4], "horizontal");
+    gameboard.receiveAttack([2, 7]);
+    gameboard.receiveAttack([2, 8]);
+
+    expect(gameboard.missedAtks).toEqual([[2, 7], [2, 8]]);
+})
+
+test("Both attacks missed", () => {
+    let ship = new Ship(3);
+    let gameboard = new Gameboard();
+
+    gameboard.placeShip(ship, [2, 4], "horizontal");
+    gameboard.receiveAttack([2, 7]);
+    gameboard.receiveAttack([2, 8]);
+
+    expect(gameboard.missedAtks).toEqual([[2, 7], [2, 8]]);
+})
+
+test("All ships sunk, you win!", () => {
+    let ship = new Ship(3);
+    let gameboard = new Gameboard();
+
+    gameboard.placeShip(ship, [2, 4], "horizontal");
+    gameboard.receiveAttack([2, 4]);
+    gameboard.receiveAttack([2, 5]);
+    gameboard.receiveAttack([2, 6]);
+
+    expect(gameboard.allSunk()).toBe(true);
+})
+
+test("There's a ship still afloat, keep shooting!", () => {
+    let ship = new Ship(3);
+    let gameboard = new Gameboard();
+
+    gameboard.placeShip(ship, [2, 4], "horizontal");
+    gameboard.receiveAttack([2, 4]);
+    gameboard.receiveAttack([2, 5]);
+
+    expect(gameboard.allSunk()).toBe(false);
+})

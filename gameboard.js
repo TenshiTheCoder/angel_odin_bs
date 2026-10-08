@@ -16,6 +16,7 @@ export class Gameboard {
     constructor(){
         this.board = buildBoard();
         this.ships = [];
+        this.missedAtks = [];
     }
 
     placeShip(ship, startingCoord, direction){
@@ -59,7 +60,15 @@ export class Gameboard {
         this.ships.push(ship);
     }
 
-    recieveAttack(){
-        let missedAtks = [];
+    receiveAttack(atkCoords){
+        let target = this.board[atkCoords[0]][atkCoords[1]];
+
+        if(target === null) {
+            this.missedAtks.push(atkCoords)
+        } else target.hit();
+    }
+
+    allSunk(){
+        return this.ships.every((ship) => ship.sunk);
     }
 }
