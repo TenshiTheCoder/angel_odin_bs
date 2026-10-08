@@ -24,5 +24,5 @@ test("Fleets are unique", () => {
     let player = new Player("real");
     let player2 = new Player("real");
     
-    expect(player.fleet).not.toBe(player2.fleet);
+    expect(player.fleet.carrier).not.toBe(player2.fleet.carrier);
 })
